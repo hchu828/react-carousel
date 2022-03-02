@@ -29,7 +29,7 @@ it("works when you click on the right arrow", function () {
     container.querySelector('img[alt="testing image 2"]')
   ).toBeInTheDocument();
 });
-
+//TODO: smoke/snapshot first
 it("renders carousel", function () {
   render(<Carousel photos={TEST_IMAGES} title="image for testing" />);
 });
@@ -76,7 +76,7 @@ it("should hide the left arrow on the first photo", function () {
 
   expect(
     container.querySelector(".fa-chevron-circle-left")
-    ).not.toBeInTheDocument()
+  ).not.toBeInTheDocument();
 });
 
 it("should hide the right arrow on the last photo", function () {
@@ -90,5 +90,5 @@ it("should hide the right arrow on the last photo", function () {
 
   expect(
     container.querySelector(".fa-chevron-circle-right")
-    ).not.toBeInTheDocument()
+  ).not.toBeInTheDocument();
 });

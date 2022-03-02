@@ -11,9 +11,9 @@ import Card from "./Card";
  *
  * State:
  * - currCardIdx: integer for current card index
- *
- * App --> Carousel --> Card
- */
+ *//TODO: arrow visibility
+  * App-- > Carousel-- > Card
+  * /
 function Carousel({ photos, title }) {
   const [currCardIdx, setCurrCardIdx] = useState(0);
   const [arrowVisibility, setArrowVisibility] = useState(
@@ -23,11 +23,12 @@ function Carousel({ photos, title }) {
   const currCard = photos[currCardIdx];
   const total = photos.length;
 
-  //Increments currCardIdx state by 1
+  //Increments currCardIdx state by 1 and updates visibility state
   function goForward() {
-    setCurrCardIdx(currCardIdx + 1);
+    const nextCardIdx = currCardIdx + 1;
+    setCurrCardIdx(nextCardIdx);
 
-    if (currCardIdx === photos.length - 1) {
+    if (nextCardIdx === photos.length - 1) {
       setArrowVisibility({ leftArrow: true, rightArrow: false });
     }
     else {
@@ -35,10 +36,12 @@ function Carousel({ photos, title }) {
     }
   }
 
+  //Decrements currCardIdx state by 1 and updates visibility state
   function goBackward() {
+    const nextCardIdx = currCardIdx - 1;
     setCurrCardIdx(currCardIdx - 1);
 
-    if (currCardIdx === 0) {
+    if (nextCardIdx === 0) {
       setArrowVisibility({ leftArrow: false, rightArrow: true });
     }
     else {
@@ -50,7 +53,8 @@ function Carousel({ photos, title }) {
     <div className="Carousel">
       <h1>{title}</h1>
       <div className="Carousel-main">
-        {arrowVisibility.leftArrow && <i className="fas fa-chevron-circle-left fa-2x" onClick={goBackward} />
+        {arrowVisibility.leftArrow &&
+          <i className="fas fa-chevron-circle-left fa-2x" onClick={goBackward} />
         }
         <Card
           caption={currCard.caption}
