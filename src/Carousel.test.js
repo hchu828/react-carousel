@@ -68,3 +68,27 @@ it("show previous image when left arrow is clicked", function () {
     container.querySelector('img[alt="testing image 2"]')
   ).not.toBeInTheDocument();
 });
+
+it("should hide the left arrow on the first photo", function () {
+  const { container, debug } = render(
+    <Carousel photos={TEST_IMAGES} title="image for testing" />
+  );
+
+  expect(
+    container.querySelector(".fa-chevron-circle-left")
+    ).not.toBeInTheDocument()
+});
+
+it("should hide the right arrow on the last photo", function () {
+  const { container, debug } = render(
+    <Carousel photos={TEST_IMAGES} title="image for testing" />
+  );
+
+  const rightArrow = container.querySelector(".fa-chevron-circle-right");
+  fireEvent.click(rightArrow);
+  fireEvent.click(rightArrow);
+
+  expect(
+    container.querySelector(".fa-chevron-circle-right")
+    ).not.toBeInTheDocument()
+});
